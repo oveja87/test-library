@@ -1,0 +1,120 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/katrinhewer/.nvm/versions/node/v5.7.0/bin/node',
+1 verbose cli   '/Users/katrinhewer/.nvm/versions/node/v5.7.0/bin/npm',
+1 verbose cli   'publish' ]
+2 info using npm@3.6.0
+3 info using node@v5.7.0
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/Users/katrinhewer/dev/hackdays/library/test-library',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /Users/katrinhewer/.npm/test-library/0.1.3/package.tgz not in flight; packing
+9 verbose correctMkdir /Users/katrinhewer/.npm correctMkdir not in flight; initializing
+10 info lifecycle test-library@0.1.3~prepublish: test-library@0.1.3
+11 silly lifecycle test-library@0.1.3~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ '/Users/katrinhewer/.npm/test-library/0.1.3/package.tgz',
+12 verbose tar pack   '/Users/katrinhewer/dev/hackdays/library/test-library' ]
+13 verbose tarball /Users/katrinhewer/.npm/test-library/0.1.3/package.tgz
+14 verbose folder /Users/katrinhewer/dev/hackdays/library/test-library
+15 verbose addLocalTarball adding from inside cache /Users/katrinhewer/.npm/test-library/0.1.3/package.tgz
+16 verbose correctMkdir /Users/katrinhewer/.npm correctMkdir not in flight; initializing
+17 silly cache afterAdd test-library@0.1.3
+18 verbose afterAdd /Users/katrinhewer/.npm/test-library/0.1.3/package/package.json not in flight; writing
+19 verbose correctMkdir /Users/katrinhewer/.npm correctMkdir not in flight; initializing
+20 verbose afterAdd /Users/katrinhewer/.npm/test-library/0.1.3/package/package.json written
+21 silly publish { name: 'test-library',
+21 silly publish   version: '0.1.3',
+21 silly publish   description: 'A minimal boilerplate for building a react component for npm, including a demo page.',
+21 silly publish   main: 'lib/index.js',
+21 silly publish   scripts:
+21 silly publish    { lib: 'babel src/lib -d lib',
+21 silly publish      'lib:watch': 'babel src/lib -w -d lib',
+21 silly publish      docs: 'webpack-dev-server',
+21 silly publish      'docs:prod': 'webpack -p' },
+21 silly publish   keywords: [],
+21 silly publish   license: 'MIT',
+21 silly publish   peerDependencies:
+21 silly publish    { react: '^15.3.0 || ^16.2.0',
+21 silly publish      'react-dom': '^15.3.0 || ^16.2.0' },
+21 silly publish   devDependencies:
+21 silly publish    { '@babel/cli': '^7.0.0-beta.37',
+21 silly publish      '@babel/core': '^7.0.0-beta.37',
+21 silly publish      '@babel/preset-env': '^7.0.0-beta.37',
+21 silly publish      '@babel/preset-react': '^7.0.0-beta.37',
+21 silly publish      'babel-loader': '^8.0.0-beta.0',
+21 silly publish      'css-loader': '^0.28.8',
+21 silly publish      'html-webpack-plugin': '^2.30.1',
+21 silly publish      react: '^16.2.0',
+21 silly publish      'react-dom': '^16.2.0',
+21 silly publish      'style-loader': '^0.19.1',
+21 silly publish      webpack: '^3.10.0',
+21 silly publish      'webpack-dev-server': '^2.11.0' },
+21 silly publish   author: { name: 'Markus Englund', email: 'markus.s.englund@gmail.com' },
+21 silly publish   homepage: 'https://github.com/yogaboll/react-npm-component-starter',
+21 silly publish   repository:
+21 silly publish    { type: 'git',
+21 silly publish      url: 'git+ssh://git@github.com/oveja87/test-library.git' },
+21 silly publish   readme: '# React component boilerplate\n\nThis is a simple boilerplate project for building a react component package for npm. It is suitable for building any type of UI component or library (like for example a dropdown menu or a toggle-switch). The project contains a correctly transpiled folder for the component library (easy to get wrong) as well as a demo page for showcasing it. The demo can easily be uploaded to _GitHub Pages_. This boilerplate project is meant to be minimal and easy to understand. Linting, testing, prettier etc have been purposefully left out. It does not include a UMD build, as those aren\'t really used anymore.\n\nIf you are new to building React components for npm you should check out [this guide](https://medium.com/@markus.s.englund/a-guide-to-building-a-react-component-for-npm-68f03b314753).\n\n## How it is structured\n\nThe source code has two separate parts – the library and the documentation (demo) page. Both are written in ES6 and JSX, and therefore have to be transpiled by Babel but in different ways.\n\n### Component library transpilation\n\nThe library source code, which is located in `src/lib`, is transpiled with Babel but is _not_ bundled with Webpack. Bundling is completely unnecessary, since the developer who will in the end use your library for their application will bundle their entire codebase, which includes your library. More importantly, if your library has any dependencies, bundling them together with your code would be a disaster since it could cause duplication and therefore larger final bundle size. The components still have to be transpiled since many developers have Webpack configured to not transpile their node_modules folder. Some may not be using JSX or ES6 at all, and would therefore be unable to transpile your component.\n\n### Demo app transpilation\n\nThe demo app source code lives inside the `src/docs` folder. It is transpiled, bundled and minified by Webpack and Babel into the `docs` folder in the root directory (by running `npm run docs:prod`). This is a completely normal react app with minimal configuration that imports the component library. It has two purposes: 1. To have a way of inspecting your components while you develop the library, and 2. As a demo to showcase to people who try to figure out what your library does.\n\nThe reason that the folder doesn\'t have a logical name like `demo` is that GitHub Pages requires it to be called `docs` for some reason...\n\n## Getting started\n\nFollow these steps to get started developing your own react component:\n\n* `git clone https://github.com/yogaboll/react-npm-component-starter.git`\n* `npm install`\n* `npm run lib:watch` - Transpile the `src/lib` folder in watch mode\n* `npm run docs` - start a development server with the demo website based on the `src/docs` folder.\n* Go to http://127.0.0.1:8000 to see the demo in action. Whenever you change the code in either src/lib or src/docs, the page will automatically update.\n\nRemember to reset the git history:\n\n* `rm -rf .git`\n* `git init`\n* `git add .`\n* `git commit -m "setup project"`\n\nWhen you have completed development and want to publish to npm:\n\n* Make sure the "name" field in the package.json file is correct (the npm package will get this name).\n* `npm publish`\n* Go to npmjs.com/package/[YOUR COMPONENT NAME]/ to confirm that it has been published.\n\nHost demo on GitHub Pages:\n\n* `npm run docs:prod` - Make a production bundle of the demo app.\n* Commit your changes to git and push to your GitHub repository.\n* On your GitHub repo page, click the **settings** tab and scroll down to the **GitHub Pages** heading. Pick `master branch /docs folder` in the **source** dropdown, And BOOM, your demo page is already live on the internet for free.\n* Note: Sometimes it might take about an hour for the page to actually start hosting. Adding /index.html after the url works instantly for whatever reason.\n',
+21 silly publish   readmeFilename: 'README.md',
+21 silly publish   gitHead: '6456355ce2e70ae5fdb8827e14cf0e621acd2ae3',
+21 silly publish   bugs: { url: 'https://github.com/oveja87/test-library/issues' },
+21 silly publish   _id: 'test-library@0.1.3',
+21 silly publish   _shasum: '15ebf4a87b8b5c4f266f83a9c33466a754d4ef5e',
+21 silly publish   _from: '.' }
+22 verbose getPublishConfig undefined
+23 silly mapToRegistry name test-library
+24 silly mapToRegistry using default registry
+25 silly mapToRegistry registry https://registry.npmjs.org/
+26 silly mapToRegistry uri https://registry.npmjs.org/test-library
+27 verbose publish registryBase https://registry.npmjs.org/
+28 silly publish uploading /Users/katrinhewer/.npm/test-library/0.1.3/package.tgz
+29 verbose request uri https://registry.npmjs.org/test-library
+30 verbose request sending authorization for write operation
+31 info attempt registry request try #1 at 2:42:19 PM
+32 verbose request using bearer token for auth
+33 verbose request id 448cec4bae2761fc
+34 http request PUT https://registry.npmjs.org/test-library
+35 http 403 https://registry.npmjs.org/test-library
+36 verbose headers { 'content-type': 'application/json',
+36 verbose headers   'cache-control': 'max-age=300',
+36 verbose headers   'content-length': '106',
+36 verbose headers   'accept-ranges': 'bytes',
+36 verbose headers   date: 'Wed, 04 Apr 2018 02:42:23 GMT',
+36 verbose headers   via: '1.1 varnish',
+36 verbose headers   connection: 'keep-alive',
+36 verbose headers   'x-served-by': 'cache-iad2146-IAD',
+36 verbose headers   'x-cache': 'MISS',
+36 verbose headers   'x-cache-hits': '0',
+36 verbose headers   'x-timer': 'S1522809742.955008,VS0,VE1353',
+36 verbose headers   vary: 'Accept-Encoding, Accept' }
+37 verbose request invalidating /Users/katrinhewer/.npm/registry.npmjs.org/test-library on PUT
+38 error publish Failed PUT 403
+39 verbose stack Error: You do not have permission to publish "test-library". Are you logged in as the correct user? : test-library
+39 verbose stack     at makeError (/Users/katrinhewer/.nvm/versions/node/v5.7.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+39 verbose stack     at CachingRegistryClient.<anonymous> (/Users/katrinhewer/.nvm/versions/node/v5.7.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:252:14)
+39 verbose stack     at Request._callback (/Users/katrinhewer/.nvm/versions/node/v5.7.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+39 verbose stack     at Request.self.callback (/Users/katrinhewer/.nvm/versions/node/v5.7.0/lib/node_modules/npm/node_modules/request/request.js:198:22)
+39 verbose stack     at emitTwo (events.js:100:13)
+39 verbose stack     at Request.emit (events.js:185:7)
+39 verbose stack     at Request.<anonymous> (/Users/katrinhewer/.nvm/versions/node/v5.7.0/lib/node_modules/npm/node_modules/request/request.js:1035:10)
+39 verbose stack     at emitOne (events.js:95:20)
+39 verbose stack     at Request.emit (events.js:182:7)
+39 verbose stack     at IncomingMessage.<anonymous> (/Users/katrinhewer/.nvm/versions/node/v5.7.0/lib/node_modules/npm/node_modules/request/request.js:962:12)
+40 verbose statusCode 403
+41 verbose pkgid test-library
+42 verbose cwd /Users/katrinhewer/dev/hackdays/library/test-library
+43 error Darwin 16.7.0
+44 error argv "/Users/katrinhewer/.nvm/versions/node/v5.7.0/bin/node" "/Users/katrinhewer/.nvm/versions/node/v5.7.0/bin/npm" "publish"
+45 error node v5.7.0
+46 error npm  v3.6.0
+47 error code E403
+48 error You do not have permission to publish "test-library". Are you logged in as the correct user? : test-library
+49 error If you need help, you may report this error at:
+49 error     <https://github.com/npm/npm/issues>
+50 verbose exit [ 1, true ]
